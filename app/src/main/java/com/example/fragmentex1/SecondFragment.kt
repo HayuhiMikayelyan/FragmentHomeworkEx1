@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.navArgs
 
 class SecondFragment : Fragment() {
     override fun onCreateView(
@@ -19,7 +20,8 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textView = view.findViewById<TextView>(R.id.tv_message)
 
-        textView.setText(arguments?.getString("m").toString())
+        val args:SecondFragmentArgs by navArgs()
+        textView.text = args.message
 
 
     }

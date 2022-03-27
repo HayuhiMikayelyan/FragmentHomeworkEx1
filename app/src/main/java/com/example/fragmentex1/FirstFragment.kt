@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 
 class FirstFragment : Fragment() {
 
@@ -24,16 +25,10 @@ class FirstFragment : Fragment() {
         val edt_message = view.findViewById<EditText>(R.id.edt_message)
         val btn_send = view.findViewById<Button>(R.id.btn_send)
 
+
         btn_send.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("m", edt_message.text.toString())
-
-            val fragment = SecondFragment()
-            fragment.arguments = bundle
-            requireFragmentManager().beginTransaction()
-                .replace(R.id.container,fragment,"SecondFragment")
-                .commit()
-
+            val text = edt_message.text.toString()
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(text))
         }
     }
 
